@@ -1,6 +1,6 @@
 {
-    "name": "reallygood_mobile_app",
-    "short_name": "reallygood_mobile_app",
+    "name": "mobile_client",
+    "short_name": "mobile_client",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
