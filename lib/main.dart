@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -59,6 +66,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyLoginPageState extends State<MyHomePage> {
   int _counter = 0;
+  String email = "";
+  String password = "";
 
   void _incrementCounter() {
     setState(() {
@@ -73,6 +82,7 @@ class _MyLoginPageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -83,7 +93,7 @@ class _MyLoginPageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ConstrainedBox(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -97,16 +107,54 @@ class _MyLoginPageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          constraints: const BoxConstraints(maxWidth: 500),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: TextField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                  onChanged: (text) {
+                    email = text;
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: TextField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
+                  onChanged: (text) {
+                    password = text;
+                  },
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    UserCredential cred = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+                    print(cred);
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                        print('The password provided is too weak.');
+                      } else if (e.code == 'email-already-in-use') {
+                        print('The account already exists for that email.');
+                      }
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+                child: const Text('Login')
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
