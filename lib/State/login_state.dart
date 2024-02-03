@@ -4,7 +4,6 @@ import 'package:mobile_client/Auth/auth.dart';
 import 'package:mobile_client/Auth/email_signIn.dart';
 import 'package:mobile_client/Auth/google_signIn.dart';
 import 'package:mobile_client/Page/login_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:getwidget/getwidget.dart';
 
 class LoginState extends State<LoginPage> {
@@ -72,7 +71,7 @@ class LoginState extends State<LoginPage> {
                   size: 38,
                   shape: GFButtonShape.square,
                   fullWidthButton: true,
-                  onPressed: EmailSignInHelper.SignInWithEmail(),
+                  onPressed: () { EmailSignInHelper.SignInWithEmail(); },
                   child: const Text('Login')
                 ),
               ),

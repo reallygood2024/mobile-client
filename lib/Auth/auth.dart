@@ -12,4 +12,9 @@ class AuthState {
     if (cred == null && logout != null) logout!.call();
     else if (cred != null && login != null) login!.call();
   }
+
+  static Logout(){
+    FirebaseAuth.instance.signOut();
+    SetCred(null);
+  }
 }
