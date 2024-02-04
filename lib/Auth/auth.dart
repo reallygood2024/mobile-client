@@ -1,16 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mobile_client/User/user.dart';
 
 class AuthState {  
   static UserCredential? cred;
   static Function? login;
   static Function? logout;
 
-  static SetCred(UserCredential? credPara){
+  static SetCred(UserCredential? credPara) async {
     cred = credPara;
     if (kDebugMode) print(cred);
-    if (cred == null && logout != null) logout!.call();
-    else if (cred != null && login != null) login!.call();
+    bool hasLogin = cred != null;
+    if (!hasLogin && logout != null) logout!.call();
+    else if (hasLogin && login != null) login!.call();
+    if (hasLogin){
+      UserData.nickname = cred!.user!.displayName;
+      UserData.profileURL = cred!.user!.photoURL;
+      bool isFirstTime = await UserData.IsFirstTime();
+      if(isFirstTime){
+        
+      }
+    }
   }
 
   static Logout(){
