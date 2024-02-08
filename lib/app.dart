@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_client/Page/home_page.dart';
 import 'package:mobile_client/Page/login_page.dart';
+import 'package:mobile_client/Page/main_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
       title: appName,
       initialRoute: "/login",
       routes: <String, WidgetBuilder>{
-        "/login": (BuildContext context) => const LoginPage(title: "ReallyGood Login"),
-        "/homepage": (BuildContext context) =>  const MainPage(title: "ReallyGood")
+        "/login": (BuildContext context) => const LoginPage(title: "Learnscape Login"),
+        "/main": (BuildContext context) => const MainPage(title: "Learnscape Login"),
       },
       theme: ThemeData(
         // This is the theme of your application.

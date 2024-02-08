@@ -7,10 +7,20 @@ class AuthState {
   static Function? login;
   static Function? logout;
 
+  static Skip() async {
+    if (kDebugMode) print("Debug mode, skip login");
+    bool hasLogin = true;
+    await _SetCred(hasLogin);
+  }
+
   static SetCred(UserCredential? credPara) async {
     cred = credPara;
     if (kDebugMode) print(cred);
     bool hasLogin = cred != null;
+    await _SetCred(hasLogin);
+  }
+
+  static _SetCred(bool hasLogin) async {
     if (!hasLogin && logout != null) logout!.call();
     else if (hasLogin && login != null) login!.call();
     if (hasLogin){

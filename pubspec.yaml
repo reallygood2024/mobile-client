@@ -39,6 +39,13 @@ dependencies:
   getwidget: ^4.0.0
   font_awesome_flutter: ^10.7.0
   google_sign_in: ^6.2.1
+  sprintf: ^7.0.0
+  flutter_chat_ui: ^1.6.12
+  uuid: ^4.3.3
+  path_provider: ^2.1.2
+  image_picker: ^1.0.7
+  open_filex: ^4.4.0
+  file_picker: ^6.1.1
 
 dev_dependencies:
   flutter_test:
