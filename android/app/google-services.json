@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "267969186164-isvuq5q1e8u5iaqgpluurv8po7ppkret.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reallygood.mobile_client",
+            "certificate_hash": "e55130c60d82849bce71db59f2ad9da5a5e57920"
+          }
+        },
+        {
           "client_id": "267969186164-dh8d95d8vd4b6cj73je3euctoff130k0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "267969186164-dh8d95d8vd4b6cj73je3euctoff130k0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "267969186164-0a8od09vg4bv2g972a4dc6ae9h08fmkn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.reallygood.mobileClient"
+              }
             }
           ]
         }
