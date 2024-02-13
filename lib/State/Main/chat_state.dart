@@ -193,7 +193,9 @@ class ChatState extends State<ChatPage> with TickerProviderStateMixin {
     _addMessage(textMessage);
   }
 
-  void _loadMessages() async {
+  void _loadMessages() async {  
+    // TODO: loading message records from server
+    /**
     final response = await rootBundle.loadString('assets/messages.json');
     final messages = (jsonDecode(response) as List)
         .map((e) => types.Message.fromJson(e as Map<String, dynamic>))
@@ -202,6 +204,7 @@ class ChatState extends State<ChatPage> with TickerProviderStateMixin {
     setState(() {
       _messages = messages;
     });
+     */
   }
 
   @override

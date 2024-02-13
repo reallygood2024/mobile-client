@@ -18,7 +18,7 @@ class LoginState extends State<LoginPage> {
     return Scaffold(
       body: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 500),
+          constraints: const BoxConstraints(maxWidth: 200, maxHeight: 400),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
