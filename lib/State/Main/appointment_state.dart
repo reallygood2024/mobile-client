@@ -125,17 +125,22 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                         });
                       },
                     ),
-                    SfCalendar(
-                      controller: calendarController,
-                      view: CalendarView.day,
-                      viewNavigationMode: ViewNavigationMode.none,
-                      dragAndDropSettings: const DragAndDropSettings(
-                        allowNavigation: false,
-                        allowScroll: false
-                      ),
-                      timeSlotViewSettings: const TimeSlotViewSettings(
-                        timeIntervalHeight: 30,
-                        timeInterval: Duration(minutes: 30),
+                    Expanded(
+                      child: SfCalendar(
+                        controller: calendarController,
+                        view: CalendarView.day,
+                        viewNavigationMode: ViewNavigationMode.none,
+                        allowAppointmentResize: true,
+                        cellEndPadding: 50,
+                        dragAndDropSettings: const DragAndDropSettings(
+                          allowNavigation: false,
+                          allowScroll: false
+                        ),
+                        timeSlotViewSettings: const TimeSlotViewSettings(
+                          timeIntervalHeight: 40,
+                          timeFormat: 'hh:mm',
+                          timeInterval: Duration(minutes: 30),
+                        ),
                       ),
                     ),
                   ],

@@ -5,6 +5,15 @@ class Home_Page_Utility {
     Size size = MediaQuery.of(context).size;
     double width = size.width;
     double height = size.height;
-    return height - 120;
+    return height - 150;
+  }
+}
+
+class Appointment_Page_Utility {
+  static double GetCalendarViewHeight(BuildContext context){
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    return height - 250;
   }
 }
