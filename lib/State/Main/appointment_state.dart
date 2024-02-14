@@ -75,6 +75,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
               )
             ],
           ),
+          const Divider( color: Colors.black, ),
           GFTabBarView(
             height: Home_Page_Utility.GetListViewHeight(context),
             physics: const NeverScrollableScrollPhysics(),

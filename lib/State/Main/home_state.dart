@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/Page/Main/home_page.dart';
@@ -69,6 +72,7 @@ class HomeState extends State<HomePage> with TickerProviderStateMixin {
               )
             ],
           ),
+          const Divider( color: Colors.black ),
           GFTabBarView(
             height: Home_Page_Utility.GetListViewHeight(context),
             physics: const NeverScrollableScrollPhysics(),
