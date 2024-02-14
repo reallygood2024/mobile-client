@@ -1,13 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:intl/date_symbol_data_local.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
@@ -209,23 +205,25 @@ class ChatState extends State<ChatPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Chat(
-      messages: _messages,
-      onAttachmentPressed: _handleAttachmentPressed,
-      onMessageTap: _handleMessageTap,
-      onPreviewDataFetched: _handlePreviewDataFetched,
-      onSendPressed: _handleSendPressed,
-      showUserAvatars: true,
-      showUserNames: true,
-      user: _user,
-      theme: const DefaultChatTheme(
-        seenIcon: Text(
-          'read',
-          style: TextStyle(
-            fontSize: 10.0,
+    return Scaffold(
+      body: Chat(
+        messages: _messages,
+        onAttachmentPressed: _handleAttachmentPressed,
+        onMessageTap: _handleMessageTap,
+        onPreviewDataFetched: _handlePreviewDataFetched,
+        onSendPressed: _handleSendPressed,
+        showUserAvatars: true,
+        showUserNames: true,
+        user: _user,
+        theme: const DefaultChatTheme(
+          seenIcon: Text(
+            'read',
+            style: TextStyle(
+              fontSize: 10.0,
+            ),
           ),
         ),
-      ),
+      )
     );
   }
 }
