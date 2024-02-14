@@ -113,6 +113,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                     EasyDateTimeLine(
                       //controller: _controller,
                       //firstDate: DateTime(2023),
+                      activeColor: const Color(0xFF00AFBE),
                       initialDate: focusDate,
                       locale: 'zh_TW',
                       //lastDate: DateTime(2023, 12, 31),
