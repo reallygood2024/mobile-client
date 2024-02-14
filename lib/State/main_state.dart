@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/Auth/auth.dart';
+import 'package:mobile_client/Page/Main/appointment_page.dart';
 import 'package:mobile_client/Page/Main/chat_page.dart';
 import 'package:mobile_client/Page/main_page.dart';
 import 'package:mobile_client/Page/Main/home_page.dart';
@@ -34,16 +35,16 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
     return Scaffold(
       bottomNavigationBar: GFTabBar(
         length: 5,
-        tabBarColor: Colors.black87,
-        labelColor: Colors.white,
-        unselectedLabelColor: Colors.grey,
+        tabBarColor: Color(0xFF00AFBE),
+        labelColor: Colors.black,
+        unselectedLabelColor: Color.fromARGB(255, 0, 17, 19),
         controller: tabController,
         tabs: const [
-          Tab(icon: Icon(Icons.home_filled)),
-          Tab(icon: Icon(Icons.message_rounded)),
-          Tab(icon: Icon(Icons.calendar_month)),
-          Tab(icon: Icon(Icons.edit_calendar)),
-          Tab(icon: Icon(Icons.person_2_rounded)),
+          Tab(icon: Icon(Icons.home_filled, size: 35)),
+          Tab(icon: Icon(Icons.message_rounded, size: 35)),
+          Tab(icon: Icon(Icons.calendar_month, size: 35)),
+          Tab(icon: Icon(Icons.edit_calendar, size: 35)),
+          Tab(icon: Icon(Icons.person_2_rounded, size: 35)),
         ], 
       ),
       body: SafeArea(
@@ -56,7 +57,7 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
               children: const <Widget>[
                   HomePage(title: 'Home page'),
                   ChatPage(title: 'Chat page'),
-                  WorkPage(title: 'Work page'),
+                  AppointmentPage(title: 'Appointment page'),
                   WorkPage(title: 'Work page'),
                   ProfilePage(title: 'Profile page'),
               ],

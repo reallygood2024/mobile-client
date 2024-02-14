@@ -24,8 +24,14 @@ class AuthState {
     if (!hasLogin && logout != null) logout!.call();
     else if (hasLogin && login != null) login!.call();
     if (hasLogin){
-      UserData.nickname = cred!.user!.displayName;
-      UserData.profileURL = cred!.user!.photoURL;
+      if (kDebugMode){
+        UserData.nickname = "Debug User";
+        UserData.profileURL = "https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-346529.jpg&fm=jpg";
+      } else {
+        UserData.nickname = cred!.user!.displayName;
+        UserData.profileURL = cred!.user!.photoURL;
+      }
+      
       bool isFirstTime = await UserData.IsFirstTime();
       if(isFirstTime){
         
