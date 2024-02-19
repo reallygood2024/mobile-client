@@ -87,17 +87,19 @@ class HomeState extends State<HomePage> with TickerProviderStateMixin {
                     Widget? w = course_list.Build(context, item);
                     
                     return Slidable(
-                      endActionPane: const ActionPane(
+                      endActionPane: ActionPane(
                         extentRatio: 0.35,
-                        motion: ScrollMotion(),
+                        motion: const ScrollMotion(),
                         children: [
-                          SlidableAction(
-                            onPressed: null,
-                            backgroundColor: Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            child: IconButton(
+                              onPressed: () {
+                                // TODO: Send delete event to server and update client UI
+                              },
+                              icon: Image.asset("lib/Assets/delete.png"),
+                            ),
+                          )
                         ],
                       ),
                       child: w!

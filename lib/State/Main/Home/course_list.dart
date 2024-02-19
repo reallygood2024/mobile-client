@@ -35,7 +35,7 @@ class Course_Record {
   }
 
   String to_string(){
-    return "${time_from.month}/${time_from.day} ${time_from.hour.toStringAsFixed(2)}:${time_from.minute.toStringAsFixed(2)} ${placeToString()}";
+    return "${time_from.month}/${time_from.day} ${time_from.hour.toStringAsFixed(0)}:${time_from.minute.toStringAsFixed(0)} ${placeToString()}";
   }
 }
 
@@ -56,11 +56,20 @@ class Course_List {
 
   Widget? Build(BuildContext context, int item){
     var k = elements[item];
-
-    return GFListTile(
-      titleText: k.to_string(),
-      subTitleText: k.context,
-      //icon: const Icon(Icons.favorite)
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: const BoxDecoration(
+        border: Border(
+          left: BorderSide(
+            color:  Color(0xFF00AFBE),
+            width: 3
+          )
+        ),
+      ),
+      child: GFListTile(
+        titleText: k.to_string(),
+        subTitleText: k.context,//icon: const Icon(Icons.favorite)
+      ),
     );
   }
 }

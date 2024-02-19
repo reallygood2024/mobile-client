@@ -25,18 +25,18 @@ class LoginState extends State<LoginPage> {
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                child: GFImageOverlay(
-                  height: 200,
-                  width: 300,
-                  image: NetworkImage('https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-346529.jpg&fm=jpg')
+                child: Image(
+                  width: 510,
+                  height: 204,
+                  image: NetworkImage('lib/Assets/LOGO.jpg')
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 child: TextField(
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
+                    border: UnderlineInputBorder(),
+                    labelText: '帳號 (學員編號)',
                   ),
                   onChanged: (text) => EmailSignInHelper.email = text,
                 ),
@@ -46,8 +46,8 @@ class LoginState extends State<LoginPage> {
                 child: TextField(
                   obscureText: true,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
+                    border: UnderlineInputBorder(),
+                    labelText: '密碼 (預設身分證字號)',
                   ),
                   onChanged: (text) => EmailSignInHelper.password = text,
                 ),
@@ -62,9 +62,14 @@ class LoginState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
                 child: GFButton(
-                  textStyle: const TextStyle(fontSize: 18, color: Colors.black),
+                  textStyle: const TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
                   color: Color(0xFF00AFBE),
                   size: 38,
+                  borderShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
                   shape: GFButtonShape.standard,
                   fullWidthButton: true,
                   onPressed: () { EmailSignInHelper.SignInWithEmail(); },

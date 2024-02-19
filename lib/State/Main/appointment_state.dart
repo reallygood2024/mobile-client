@@ -111,13 +111,51 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
               Scrollbar(
                 child: Column(
                   children: <Widget>[
-                    EasyDateTimeLine(
-                      //controller: _controller,
+                    Padding(
+                      padding:EdgeInsets.all(2),
+                      child: Row(
+                        mainAxisAlignment:MainAxisAlignment.end,
+                        children: <Widget>[
+                          GFIconButton(
+                            icon: Icon(Icons.keyboard_arrow_left_outlined), 
+                            color: Colors.black,
+                            size: GFSize.LARGE,
+                            onPressed: (){
+                              setState(() {
+                                focusDate = focusDate.add(const Duration(days: -365));
+                              });
+                            },
+                            type: GFButtonType.transparent
+                          ),
+                          Text(focusDate.year.toString()),
+                          GFIconButton(
+                            icon: Icon(Icons.keyboard_arrow_right_outlined), 
+                            color: Colors.black,
+                            size: GFSize.LARGE,
+                            onPressed: (){
+                              setState(() {
+                                focusDate = focusDate.add(const Duration(days: 365));
+                              });
+                            },
+                            type: GFButtonType.transparent
+                          ),
+                        ],
+                      )
+                    ),
+                    EasyInfiniteDateTimeLine(
+                      controller: _controller,
                       //firstDate: DateTime(2023),
                       activeColor: const Color(0xFF00AFBE),
-                      initialDate: focusDate,
-                      locale: 'zh_TW',
-                      //lastDate: DateTime(2023, 12, 31),
+                      firstDate: DateTime(focusDate.year, focusDate.month, 1),
+                      lastDate: DateTime(focusDate.year, focusDate.month, 31),
+                      showTimelineHeader: false,
+                      focusDate: focusDate,
+                      //locale: 'zh_TW',
+                      dayProps: const EasyDayProps(
+                        width: 50,
+                        height: 50,
+                        dayStructure: DayStructure.dayNumberOnly
+                      ),
                       onDateChange: (selectedDate) {
                         setState(() {
                           focusDate = selectedDate;
@@ -129,6 +167,9 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                     Expanded(
                       child: SfCalendar(
                         controller: calendarController,
+                        showCurrentTimeIndicator: false,
+                        showWeekNumber: false,
+                        showTodayButton: false,
                         view: CalendarView.day,
                         viewNavigationMode: ViewNavigationMode.none,
                         allowAppointmentResize: true,

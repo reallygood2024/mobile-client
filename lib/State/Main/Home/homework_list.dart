@@ -27,7 +27,7 @@ class Homework_Record {
   }
 
   String to_string(){
-    return "${deadline.month}/${deadline.day} ${deadline.hour.toStringAsFixed(2)}:${deadline.minute.toStringAsFixed(2)}";
+    return "${deadline.month}/${deadline.day} ${deadline.hour.toStringAsFixed(0)}:${deadline.minute.toStringAsFixed(0)}";
   }
 }
 
@@ -49,10 +49,20 @@ class Homework_List {
   Widget? Build(BuildContext context, int item){
     var k = elements[item];
 
-    return GFListTile(
-      titleText: k.to_string(),
-      subTitleText: k.context,
-      icon: const Icon(Icons.favorite)
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: const BoxDecoration(
+        border: Border(
+          left: BorderSide(
+            color:  Color(0xFF00AFBE),
+            width: 3
+          )
+        ),
+      ),
+      child: GFListTile(
+        titleText: k.title,
+        subTitleText: "期限:" + k.to_string()
+      ),
     );
   }
 }

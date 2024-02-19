@@ -39,12 +39,12 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
         labelColor: Colors.black,
         unselectedLabelColor: Color.fromARGB(255, 0, 17, 19),
         controller: tabController,
-        tabs: const [
-          Tab(icon: Icon(Icons.home_filled, size: 35)),
-          Tab(icon: Icon(Icons.message_rounded, size: 35)),
-          Tab(icon: Icon(Icons.calendar_month, size: 35)),
-          Tab(icon: Icon(Icons.edit_calendar, size: 35)),
-          Tab(icon: Icon(Icons.person_2_rounded, size: 35)),
+        tabs: [
+          Tab(icon: Image.asset("lib/Assets/home.png", width: 35)),
+          Tab(icon: Image.asset("lib/Assets/user.png", width: 35)),
+          Tab(icon: Image.asset("lib/Assets/calendar.png", width: 35)),
+          Tab(icon: Image.asset("lib/Assets/paper.png", width: 35)),
+          Tab(icon: Image.asset("lib/Assets/conversation.png", width: 35)),
         ], 
       ),
       body: SafeArea(
@@ -56,10 +56,10 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
               controller: tabController,
               children: const <Widget>[
                   HomePage(title: 'Home page'),
-                  ChatPage(title: 'Chat page'),
+                  ProfilePage(title: 'Profile page'),
                   AppointmentPage(title: 'Appointment page'),
                   WorkPage(title: 'Work page'),
-                  ProfilePage(title: 'Profile page'),
+                  ChatPage(title: 'Chat page'),
               ],
             ),
           )
