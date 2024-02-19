@@ -216,6 +216,9 @@ class ChatState extends State<ChatPage> with TickerProviderStateMixin {
         showUserNames: true,
         user: _user,
         theme: const DefaultChatTheme(
+          inputBackgroundColor: Colors.transparent,
+          inputBorderRadius: BorderRadius.zero,
+          inputTextColor: Colors.black,
           seenIcon: Text(
             'read',
             style: TextStyle(
