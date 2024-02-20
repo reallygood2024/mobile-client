@@ -48,8 +48,8 @@ class ProfileState extends State<ProfilePage> with TickerProviderStateMixin {
           titleText:'修改密碼',
           onTap: () {
             showDialog(
-              context: context, builder: (BuildContext context2) => Dialog_Modify_Password(
-              )
+              context: context, 
+              builder: (BuildContext context2) => Dialog_Modify_Password()
             );
           }
           //icon: Icon(Icons.expand_more)

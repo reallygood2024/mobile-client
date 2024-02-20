@@ -6,6 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/Page/Main/home_page.dart';
 import 'package:mobile_client/State/Main/Home/course_list.dart';
+import 'package:mobile_client/State/Main/Home/dialog_course_delete.dart';
 import 'package:mobile_client/State/Main/Home/homework_list.dart';
 import 'package:mobile_client/Utility/size.dart';
 
@@ -96,6 +97,13 @@ class HomeState extends State<HomePage> with TickerProviderStateMixin {
                             child: IconButton(
                               onPressed: () {
                                 // TODO: Send delete event to server and update client UI
+                                showDialog(
+                                  context: context, 
+                                  builder: (BuildContext context2) => Dialog_Course_Delete(
+                                    title: course_list.elements[item].to_string(), 
+                                    content: "Test Content"
+                                  )
+                                );
                               },
                               icon: Image.asset("lib/Assets/delete.png"),
                             ),

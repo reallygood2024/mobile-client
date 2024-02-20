@@ -222,7 +222,7 @@ class ChatState extends State<ChatPage> with TickerProviderStateMixin {
           seenIcon: Text(
             'read',
             style: TextStyle(
-              fontSize: 10.0,
+              fontSize: -10.0,
             ),
           ),
         ),
