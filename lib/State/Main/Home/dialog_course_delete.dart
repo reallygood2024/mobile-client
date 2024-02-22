@@ -8,6 +8,10 @@ class Dialog_Course_Delete extends StatelessWidget {
 
   Dialog_Course_Delete({super.key, required this.title, required this.content});
 
+  _CancelAppointMent(){
+    // TODO: Cancel the appointment
+  }
+
   @override
   Widget build(BuildContext context) {
     return GFFloatingWidget(
@@ -39,6 +43,7 @@ class Dialog_Course_Delete extends StatelessWidget {
               shape: GFButtonShape.pills,
               color: Colors.black,
               onPressed: () {
+                _CancelAppointMent();
                 Navigator.pop(context);
               }, 
             ),

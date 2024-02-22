@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
-class Dialog_QR extends StatelessWidget {
-
-  String data;
-
-  Dialog_QR({super.key, required this.data});
+class Dialog_Course extends StatelessWidget {
+  Dialog_Course({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GFFloatingWidget(
       child: GFAlert(
-        title: '學生 QR Code',
-        content: QrImageView(
-          data: data,
-          version: QrVersions.auto,
-        ),
+        title: '上課資訊',
         bottomBar: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

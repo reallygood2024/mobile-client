@@ -5,7 +5,7 @@ class Home_Page_Utility {
     Size size = MediaQuery.of(context).size;
     double width = size.width;
     double height = size.height;
-    return height - 160;
+    return height - 140;
   }
 }
 

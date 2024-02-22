@@ -52,12 +52,28 @@ class Homework_List {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: const BoxDecoration(
+        color: Colors.white,
         border: Border(
           left: BorderSide(
             color:  Color(0xFF00AFBE),
-            width: 3
+            width: 4
           )
         ),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(5),
+          topRight: Radius.circular(5),
+          bottomLeft: Radius.circular(5),
+          bottomRight: Radius.circular(5)
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(100, 0, 0, 0),
+            spreadRadius: 1,
+            blurRadius: 6,
+            blurStyle: BlurStyle.outer,
+            offset: Offset(0, 3)
+          )
+        ]
       ),
       child: GFListTile(
         titleText: k.title,

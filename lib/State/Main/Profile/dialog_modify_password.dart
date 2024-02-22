@@ -6,6 +6,10 @@ class Dialog_Modify_Password extends StatelessWidget {
 
   Dialog_Modify_Password({super.key});
 
+  _PasswordModify(){
+    // TODO: Modify password implementation
+  }
+
   @override
   Widget build(BuildContext context) {
     return GFFloatingWidget(
@@ -55,12 +59,17 @@ class Dialog_Modify_Password extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             GFButton(
-              onPressed: (){ Navigator.pop(context); },
+              onPressed: (){ 
+                _PasswordModify();
+                Navigator.pop(context); 
+              },
               shape: GFButtonShape.standard,
               child: const Text('確認')
             ),
             GFButton(
-              onPressed: (){ Navigator.pop(context); },
+              onPressed: (){ 
+                Navigator.pop(context); 
+              },
               shape: GFButtonShape.standard,
               child: const Text('關閉')
             ),

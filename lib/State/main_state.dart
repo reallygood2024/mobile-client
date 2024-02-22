@@ -34,6 +34,7 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
     };
     return Scaffold(
       bottomNavigationBar: GFTabBar(
+        tabBarHeight: 75,
         length: 5,
         tabBarColor: Color(0xFF00AFBE),
         labelColor: Colors.black,
