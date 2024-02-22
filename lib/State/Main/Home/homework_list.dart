@@ -50,7 +50,7 @@ class Homework_List {
     var k = elements[item];
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(

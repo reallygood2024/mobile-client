@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:mobile_client/Page/Main/appointment_page.dart';
 import 'package:mobile_client/State/Main/Home/course_list.dart';
 import 'package:mobile_client/Utility/size.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class AppointmentState extends State<AppointmentPage> with TickerProviderStateMixin {
   late TabController tabController;
@@ -14,7 +14,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
   late TextStyle selected;
   late TextStyle unselecte;
   late DateTime focusDate;
-  final EasyInfiniteDateTimelineController _controller = EasyInfiniteDateTimelineController();
+  late CalendarFormat format;
 
   @override
   void initState() {
@@ -26,6 +26,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
     selected = const TextStyle(fontWeight: FontWeight.w900, fontSize: 16);
     unselecte = const TextStyle(fontWeight: FontWeight.w300, fontSize: 16);
     focusDate = DateTime.now();
+    format = CalendarFormat.week;
   }
 
   @override
@@ -75,7 +76,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
               )
             ],
           ),
-          const Divider( color: Colors.black, ),
+          const Divider( color: Colors.black, height: 2 ),
           GFTabBarView(
             height: Home_Page_Utility.GetListViewHeight(context),
             physics: const NeverScrollableScrollPhysics(),
@@ -111,58 +112,95 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
               Scrollbar(
                 child: Column(
                   children: <Widget>[
-                    Padding(
-                      padding:EdgeInsets.all(2),
-                      child: Row(
-                        mainAxisAlignment:MainAxisAlignment.end,
+                    Container(
+                      margin: const EdgeInsets.all(10),
+                      child: 
+                      Stack(
                         children: <Widget>[
-                          GFIconButton(
-                            icon: Icon(Icons.keyboard_arrow_left_outlined), 
-                            color: Colors.black,
-                            size: GFSize.LARGE,
-                            onPressed: (){
+                          TableCalendar(
+                            firstDay: focusDate,
+                            lastDay: DateTime.now().add(const Duration(days: 365 * 10)),
+                            focusedDay: focusDate,
+                            currentDay: focusDate,
+                            calendarFormat: format,
+                            locale: 'zh_TW',
+                            headerStyle: const HeaderStyle(
+                              decoration: BoxDecoration(
+                                color: Color(0xFF00AFBE),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                ),
+                              ),
+                              formatButtonVisible: false,
+                              titleCentered: true
+                            ),
+                            daysOfWeekStyle: const DaysOfWeekStyle(
+                              weekdayStyle: TextStyle(color: Colors.black),
+                              weekendStyle: TextStyle(color: Colors.black),
+                              decoration: BoxDecoration(
+                                color: Color(0xFF00AFBE),
+                              )
+                            ),
+                            calendarStyle: const CalendarStyle(
+                              defaultTextStyle: TextStyle(color: Colors.black),
+                              holidayTextStyle: TextStyle(color: Colors.black),
+                              rangeEndTextStyle: TextStyle(color: Colors.black),
+                              weekendTextStyle: TextStyle(color: Colors.black),
+                              outsideTextStyle: TextStyle(color: Colors.black),
+                              rangeStartTextStyle: TextStyle(color: Colors.black),
+                              withinRangeTextStyle: TextStyle(color: Colors.black),
+                              weekNumberTextStyle: TextStyle(color: Colors.black),
+                              disabledTextStyle: TextStyle(color: Colors.black),
+                              selectedTextStyle: TextStyle(color: Colors.black),
+                              todayTextStyle: TextStyle(color: Colors.white),
+                              isTodayHighlighted: false,
+                              todayDecoration: BoxDecoration(
+                                color: Color(0xFF9FA8DA),
+                                shape: BoxShape.circle,
+                              ),
+                              withinRangeDecoration: BoxDecoration(
+                                color: Color(0xFF00AFBE),
+                              ),
+                              selectedDecoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              rowDecoration: BoxDecoration(
+                                color: Color(0xFF00AFBE),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(5),
+                                  bottomRight: Radius.circular(5),
+                                ),
+                              )
+                            ),
+                            onFormatChanged: (f) {
                               setState(() {
-                                focusDate = focusDate.add(const Duration(days: -365));
+                                format = f;
                               });
                             },
-                            type: GFButtonType.transparent
+                            selectedDayPredicate: (day) {
+                              return isSameDay(calendarController.selectedDate, day);
+                            },
+                            onPageChanged: (focusedDay) {
+                              focusDate = focusedDay;
+                            },
+                            onDaySelected: (selectedDay, focusedDay){
+                              if (!isSameDay(calendarController.selectedDate, selectedDay)) {
+                                setState(() {
+                                  focusDate = focusedDay;
+                                  calendarController.selectedDate = selectedDay;
+                                  //_selectedEvents = _getEventsForDay(selectedDay);
+                                });
+                              }
+                            },
                           ),
-                          Text(focusDate.year.toString()),
-                          GFIconButton(
-                            icon: Icon(Icons.keyboard_arrow_right_outlined), 
-                            color: Colors.black,
-                            size: GFSize.LARGE,
-                            onPressed: (){
-                              setState(() {
-                                focusDate = focusDate.add(const Duration(days: 365));
-                              });
-                            },
-                            type: GFButtonType.transparent
+                          const Padding(
+                            padding:EdgeInsets.only(top: 81, left: 10, right: 10),
+                            child: Divider(color: Colors.black),
                           ),
                         ],
                       )
-                    ),
-                    EasyInfiniteDateTimeLine(
-                      controller: _controller,
-                      //firstDate: DateTime(2023),
-                      activeColor: const Color(0xFF00AFBE),
-                      firstDate: DateTime(focusDate.year, focusDate.month, 1),
-                      lastDate: DateTime(focusDate.year, focusDate.month, 31),
-                      showTimelineHeader: false,
-                      focusDate: focusDate,
-                      //locale: 'zh_TW',
-                      dayProps: const EasyDayProps(
-                        width: 50,
-                        height: 50,
-                        dayStructure: DayStructure.dayNumberOnly
-                      ),
-                      onDateChange: (selectedDate) {
-                        setState(() {
-                          focusDate = selectedDate;
-                          calendarController.selectedDate = focusDate;
-                          calendarController.displayDate = focusDate;
-                        });
-                      },
                     ),
                     Expanded(
                       child: SfCalendar(
@@ -170,6 +208,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                         showCurrentTimeIndicator: false,
                         showWeekNumber: false,
                         showTodayButton: false,
+                        showDatePickerButton: false,
                         view: CalendarView.day,
                         viewNavigationMode: ViewNavigationMode.none,
                         allowAppointmentResize: true,
@@ -178,6 +217,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                           allowNavigation: false,
                           allowScroll: false
                         ),
+                        headerHeight: 0,
                         timeSlotViewSettings: const TimeSlotViewSettings(
                           timeIntervalHeight: 40,
                           timeFormat: 'hh:mm',

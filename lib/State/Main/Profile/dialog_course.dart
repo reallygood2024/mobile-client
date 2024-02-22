@@ -14,7 +14,9 @@ class Dialog_Course extends StatelessWidget {
           children: <Widget>[
             GFButton(
               onPressed: (){ Navigator.pop(context); },
-              shape: GFButtonShape.standard,
+              color: const Color(0xFF00AFBE),
+              textColor: Colors.white,
+              shape: GFButtonShape.pills,
               child: const Text('關閉')
             ),
           ],

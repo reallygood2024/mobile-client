@@ -20,13 +20,20 @@ class Dialog_Course_Delete extends StatelessWidget {
       child: GFAlert(
         titleAlignment: Alignment.center,
         contentAlignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 30),
         title: title,
         titleTextStyle: const TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.w700),
-        backgroundColor: Color(0xFF00AFBE),
-        content: Text(content),
+        backgroundColor: const Color(0xFF00AFBE),
+        content: Padding(
+          padding: const EdgeInsets.only(top: 5, bottom: 20),
+          child: Text(
+            content, 
+            style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.w400),
+          ),
+        ),
         bottomBarAlignment: Alignment.center,
         bottomBar: GFButtonBar(
+          spacing: 20,
           children: <Widget>[
             GFButton(
               textColor: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/Page/Main/profile_page.dart';
 import 'package:mobile_client/State/Main/Profile/dialog_course.dart';
+import 'package:mobile_client/State/Main/Profile/dialog_logout.dart';
 import 'package:mobile_client/State/Main/Profile/dialog_modify_password.dart';
 import 'package:mobile_client/State/Main/Profile/dialog_progress.dart';
 import 'package:mobile_client/State/Main/Profile/dialog_qr.dart';
@@ -68,7 +69,10 @@ class ProfileState extends State<ProfilePage> with TickerProviderStateMixin {
           padding:EdgeInsets.symmetric(horizontal: 100, vertical: 20),
           child: GFButton(                          
             onPressed: () {
-
+              showDialog(
+                context: context, 
+                builder: (BuildContext context2) => Dialog_Logout()
+              );
             },
             text: "帳號登出",
             icon: Icon(Icons.logout),
