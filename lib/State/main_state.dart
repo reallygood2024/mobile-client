@@ -10,7 +10,11 @@ import 'package:mobile_client/Page/Main/work_page.dart';
 
 
 class MainState extends State<MainPage> with TickerProviderStateMixin {
-  late TabController tabController;
+  static late TabController tabController;
+
+  static void JumpTo(int value, { Duration? duration, Curve curve = Curves.ease }){
+    tabController.animateTo(value, duration: duration, curve: curve );
+  }
 
   @override
   void initState() {
@@ -32,13 +36,14 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
     AuthState.logout = () => {
       Navigator.pushNamed(context, "/login")
     };
+
     return Scaffold(
       bottomNavigationBar: GFTabBar(
         tabBarHeight: 75,
         length: 5,
-        tabBarColor: Color(0xFF00AFBE),
+        tabBarColor: const Color(0xFF00AFBE),
         labelColor: Colors.black,
-        unselectedLabelColor: Color.fromARGB(255, 0, 17, 19),
+        unselectedLabelColor: const Color.fromARGB(255, 0, 17, 19),
         controller: tabController,
         tabs: [
           Tab(icon: Image.asset("lib/Assets/home.png", width: 35)),

@@ -4,7 +4,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/State/Main/Home/dialog_course_delete.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:mobile_client/Page/Main/appointment_page.dart';
-import 'package:mobile_client/State/Main/Home/course_list.dart';
+import 'package:mobile_client/List/course_list.dart';
 import 'package:mobile_client/Utility/size.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -23,7 +23,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
     tabController = TabController(length: 2, vsync: this);
     calendarController = CalendarController();
     //homework_list = Homework_List();
-    course_list = Course_List();
+    course_list = Course_List.instance();
     selected = const TextStyle(fontWeight: FontWeight.w900, fontSize: 16);
     unselecte = const TextStyle(fontWeight: FontWeight.w300, fontSize: 16);
     focusDate = DateTime.now();

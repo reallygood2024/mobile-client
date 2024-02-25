@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/Page/Main/work_page.dart';
-import 'package:mobile_client/State/Main/Home/homework_list.dart';
+import 'package:mobile_client/List/homework_list.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 
 class WorkState extends State<WorkPage> with TickerProviderStateMixin {
@@ -14,7 +14,7 @@ class WorkState extends State<WorkPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    homework_list = Homework_List();
+    homework_list = Homework_List.instance();
     controller = TabController(length: 5, vsync: this);
   }
 

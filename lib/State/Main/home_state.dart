@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/Page/Main/home_page.dart';
-import 'package:mobile_client/State/Main/Home/course_list.dart';
+import 'package:mobile_client/List/course_list.dart';
 import 'package:mobile_client/State/Main/Home/dialog_course_delete.dart';
-import 'package:mobile_client/State/Main/Home/homework_list.dart';
+import 'package:mobile_client/List/homework_list.dart';
 import 'package:mobile_client/Utility/size.dart';
 
 class HomeState extends State<HomePage> with TickerProviderStateMixin {
@@ -20,8 +20,8 @@ class HomeState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     tabController = TabController(length: 2, vsync: this);
-    homework_list = Homework_List();
-    course_list = Course_List();
+    homework_list = Homework_List.instance();
+    course_list = Course_List.instance();
     selected = const TextStyle(fontWeight: FontWeight.w900, fontSize: 16);
     unselecte = const TextStyle(fontWeight: FontWeight.w300, fontSize: 16);
   }
@@ -119,8 +119,9 @@ class HomeState extends State<HomePage> with TickerProviderStateMixin {
                   itemCount: homework_list.length(),
                   padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
                   itemBuilder: (context, item) {
+                    Widget? w = homework_list.Build(context, item);
                     // Homework_List
-                    return homework_list.Build(context, item);
+                    return w;
                   },
                 )
               )
