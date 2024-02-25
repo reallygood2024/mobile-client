@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/List/homework_record.dart';
-import 'package:mobile_client/State/main_state.dart';
+import 'package:mobile_client/State/Main/Work/work_content_state.dart';
 
 class Homework_List {
   List<Homework_Record> elements = [];
@@ -57,8 +57,7 @@ class Homework_List {
         subTitleText: "期限:${k.to_string()}",
         onTap: () {
           // TODO: Open work content page
-          MainState.JumpTo(3);
-          Navigator.pushNamed(context, "/main/work_state");
+          Navigator.pushNamed(context, "/main/work_content");
         },
       ),
     );

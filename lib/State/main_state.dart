@@ -11,6 +11,7 @@ import 'package:mobile_client/Page/Main/work_page.dart';
 
 class MainState extends State<MainPage> with TickerProviderStateMixin {
   static late TabController tabController;
+  static int placeHolder = -1;
 
   static void JumpTo(int value, { Duration? duration, Curve curve = Curves.ease }){
     tabController.animateTo(value, duration: duration, curve: curve );
@@ -36,6 +37,11 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
     AuthState.logout = () => {
       Navigator.pushNamed(context, "/login")
     };
+
+    if(placeHolder != -1){
+      tabController.animateTo(placeHolder);
+      placeHolder = -1;
+    }
 
     return Scaffold(
       bottomNavigationBar: GFTabBar(
