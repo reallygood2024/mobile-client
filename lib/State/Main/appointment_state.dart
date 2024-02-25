@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:mobile_client/State/Main/Home/dialog_course_delete.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:mobile_client/Page/Main/appointment_page.dart';
 import 'package:mobile_client/State/Main/Home/course_list.dart';
@@ -91,17 +92,26 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                     Widget? w = course_list.Build(context, item);
                     
                     return Slidable(
-                      endActionPane: const ActionPane(
+                      endActionPane: ActionPane(
                         extentRatio: 0.35,
-                        motion: ScrollMotion(),
+                        motion: const ScrollMotion(),
                         children: [
-                          SlidableAction(
-                            onPressed: null,
-                            backgroundColor: Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                          ),
+                          Container(
+                            margin: const EdgeInsets.all(15),
+                            child: IconButton(
+                              onPressed: () {
+                                // TODO: Send delete event to server and update client UI
+                                showDialog(
+                                  context: context, 
+                                  builder: (BuildContext context2) => Dialog_Course_Delete(
+                                    title: course_list.elements[item].to_string(), 
+                                    content: "Test Content"
+                                  )
+                                );
+                              },
+                              icon: Image.asset("lib/Assets/delete.png"),
+                            ),
+                          )
                         ],
                       ),
                       child: w!
