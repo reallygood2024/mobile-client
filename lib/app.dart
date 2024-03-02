@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_client/Page/Main/Profile/background_page.dart';
-import 'package:mobile_client/Page/Main/Profile/wish_page.dart';
-import 'package:mobile_client/Page/Main/Work/file_system_page.dart';
-import 'package:mobile_client/Page/Main/Work/work_content_page.dart';
 import 'package:mobile_client/Page/login_page.dart';
 import 'package:mobile_client/Page/main_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  static Widget? page = null;
+  static int type = -1;
 
   // This widget is the root of your application.
   @override
@@ -16,13 +15,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: appName,
       initialRoute: "/login",
-      routes: <String, WidgetBuilder>{
-        "/login": (BuildContext context) => const LoginPage(title: "Learnscape Login"),
-        "/main": (BuildContext context) => const MainPage(title: "Learnscape Login"),
-        "/main/profile_background": (BuildContext context) => const BackgroundPage(title: "Background"),
-        "/main/profile_wish": (BuildContext context) => const WishPage(title: "Wish"),
-        "/main/work_content": (BuildContext context) => const WorkContentPage(title: "Work Detail"),
-        "/main/work_filesystem": (BuildContext context) => const WorkFileSystemPage(title: "Work File System"),
+      onGenerateRoute: (settings) {
+        if(settings.name!.startsWith("/login") || settings.name == "/"){
+          if(page == null || type != 0) page = const LoginPage();
+          type = 0;
+        }
+        else if(settings.name!.startsWith("/main")){
+          if(page == null || type != 1) page = const MainPage();
+          type = 1;
+        }else{
+          throw Exception('Unknown route: ${settings.name}');
+        }
+        return MaterialPageRoute<dynamic>(
+          builder: (context2) {
+            return page!;
+          },
+          settings: settings
+        );
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -32,6 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

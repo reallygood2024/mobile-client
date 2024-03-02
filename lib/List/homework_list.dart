@@ -2,15 +2,21 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/List/homework_record.dart';
-import 'package:mobile_client/State/Main/Work/work_content_state.dart';
+import 'package:mobile_client/State/main_state.dart';
 
 class Homework_List {
   List<Homework_Record> elements = [];
 
   int length() => elements.length;
 
+  static Homework_List? _instance = null;
   static Homework_List instance (){
-    return Homework_List();
+    if(_instance != null) {
+      return _instance!;
+    } else {
+      _instance = Homework_List();
+    }
+    return _instance!;
   }
 
   Homework_List(){
@@ -57,7 +63,7 @@ class Homework_List {
         subTitleText: "期限:${k.to_string()}",
         onTap: () {
           // TODO: Open work content page
-          Navigator.pushNamed(context, "/main/work_content");
+          MainState.instance.UpdatePage(3, 1);
         },
       ),
     );

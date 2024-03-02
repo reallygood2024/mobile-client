@@ -6,8 +6,14 @@ import 'package:mobile_client/List/course_record.dart';
 class Course_List {
   List<Course_Record> elements = [];
 
+  static Course_List? _instance = null;
   static Course_List instance (){
-    return Course_List();
+    if(_instance != null) {
+      return _instance!;
+    } else {
+      _instance = Course_List();
+    }
+    return _instance!;
   }
 
   Course_List(){

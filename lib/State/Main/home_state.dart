@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:getwidget/getwidget.dart';
@@ -119,9 +117,8 @@ class HomeState extends State<HomePage> with TickerProviderStateMixin {
                   itemCount: homework_list.length(),
                   padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
                   itemBuilder: (context, item) {
-                    Widget? w = homework_list.Build(context, item);
                     // Homework_List
-                    return w;
+                  return homework_list.Build(context, item);
                   },
                 )
               )
