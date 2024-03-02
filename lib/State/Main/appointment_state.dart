@@ -128,10 +128,10 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                       Stack(
                         children: <Widget>[
                           TableCalendar(
-                            firstDay: focusDate,
+                            firstDay: DateTime.now(),
                             lastDay: DateTime.now().add(const Duration(days: 365 * 10)),
                             focusedDay: focusDate,
-                            currentDay: focusDate,
+                            currentDay: calendarController.selectedDate,
                             calendarFormat: format,
                             locale: 'zh_TW',
                             headerStyle: const HeaderStyle(
@@ -152,6 +152,16 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                                 color: Color(0xFF00AFBE),
                               )
                             ),
+                            onHeaderTapped: (focusedDay) {
+                              setState(() {
+                                if(format == CalendarFormat.month) {
+                                  format = CalendarFormat.week;
+                                }
+                                else {
+                                  format = CalendarFormat.month;
+                                }
+                              });
+                            },
                             calendarStyle: const CalendarStyle(
                               defaultTextStyle: TextStyle(color: Colors.black),
                               holidayTextStyle: TextStyle(color: Colors.black),
@@ -162,7 +172,7 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                               withinRangeTextStyle: TextStyle(color: Colors.black),
                               weekNumberTextStyle: TextStyle(color: Colors.black),
                               disabledTextStyle: TextStyle(color: Colors.black),
-                              selectedTextStyle: TextStyle(color: Colors.black),
+                              selectedTextStyle: TextStyle(color: Colors.black, fontSize: 18),
                               todayTextStyle: TextStyle(color: Colors.white),
                               isTodayHighlighted: false,
                               todayDecoration: BoxDecoration(
@@ -198,15 +208,15 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                             onDaySelected: (selectedDay, focusedDay){
                               if (!isSameDay(calendarController.selectedDate, selectedDay)) {
                                 setState(() {
-                                  focusDate = focusedDay;
                                   calendarController.selectedDate = selectedDay;
+                                  calendarController.displayDate = selectedDay;
                                   //_selectedEvents = _getEventsForDay(selectedDay);
                                 });
                               }
                             },
                           ),
                           const Padding(
-                            padding:EdgeInsets.only(top: 81, left: 10, right: 10),
+                            padding:EdgeInsets.only(top: 79, left: 10, right: 10),
                             child: Divider(color: Colors.black),
                           ),
                         ],
@@ -233,6 +243,11 @@ class AppointmentState extends State<AppointmentPage> with TickerProviderStateMi
                           timeFormat: 'hh:mm',
                           timeInterval: Duration(minutes: 30),
                         ),
+                        onTap: (calendarTapDetails) {
+                          setState(() {
+                            format = CalendarFormat.week;
+                          });
+                        },
                       ),
                     ),
                   ],

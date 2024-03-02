@@ -75,7 +75,6 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
         enableFeedback: true,
         type: BottomNavigationBarType.fixed,
         onTap: (value) {
-          log("value: " + value.toString());
           setState(() {
             currentIndex = value;
             currentSubIndex = 0;
