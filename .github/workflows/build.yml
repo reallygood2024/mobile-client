@@ -19,11 +19,17 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       #- run: flutter test
+      - run: flutter build apk
+      - name: Upload build apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk-debug
+          path: build/app/outputs/apk/release/app-release.apk
       - run: flutter build apk --release
       - name: Upload build apk
         uses: actions/upload-artifact@v4
         with:
-          name: release-apk
+          name: release-apk-release
           path: build/app/outputs/apk/release/app-release.apk
   buildios:
     name: Build iOS
@@ -36,9 +42,15 @@ jobs:
           channel: 'stable'
       - run: flutter pub get
       #- run: flutter test
+      - run: flutter build ios --no-codesign
+      - name: Upload build ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-ipa-debug
+          path: build/ios/iphoneos/Runner.app
       - run: flutter build ios --release --no-codesign
       - name: Upload build ipa
         uses: actions/upload-artifact@v4
         with:
-          name: release-ipa
+          name: release-ipa-release
           path: build/ios/iphoneos/Runner.app
