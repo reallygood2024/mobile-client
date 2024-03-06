@@ -17,17 +17,26 @@ class LoginState extends State<LoginPage> {
     };
     return Scaffold(
       body: Center(
+        heightFactor: 1.2,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 200, maxHeight: 400),
+          constraints: const BoxConstraints(maxWidth: 400, maxHeight: 500),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                child: Image(
+                  width: 510,
+                  height: 204,
+                  image: NetworkImage('lib/Assets/LOGO.jpg')
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 child: TextField(
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
+                    border: UnderlineInputBorder(),
+                    labelText: '帳號 (學員編號)',
                   ),
                   onChanged: (text) => EmailSignInHelper.email = text,
                 ),
@@ -37,18 +46,31 @@ class LoginState extends State<LoginPage> {
                 child: TextField(
                   obscureText: true,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
+                    border: UnderlineInputBorder(),
+                    labelText: '密碼 (預設身分證字號)',
                   ),
                   onChanged: (text) => EmailSignInHelper.password = text,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: TextButton(
+                  onPressed: () { EmailSignInHelper.SignInWithEmail(); },
+                  child: const Text('忘記密碼', style: TextStyle(color: Color(0xFF00AFBE)))
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 8),
                 child: GFButton(
-                  textStyle: const TextStyle(fontSize: 18, color: Colors.white),
+                  textStyle: const TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w600),
+                  color: Color(0xFF00AFBE),
                   size: 38,
-                  shape: GFButtonShape.square,
+                  borderShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
+                  shape: GFButtonShape.standard,
                   fullWidthButton: true,
                   onPressed: () { EmailSignInHelper.SignInWithEmail(); },
                   child: const Text('Login')

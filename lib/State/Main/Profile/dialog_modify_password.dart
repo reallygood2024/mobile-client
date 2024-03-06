@@ -6,10 +6,18 @@ class Dialog_Modify_Password extends StatelessWidget {
 
   Dialog_Modify_Password({super.key});
 
+  _PasswordModify(){
+    // TODO: Modify password implementation
+  }
+
   @override
   Widget build(BuildContext context) {
     return GFFloatingWidget(
+      verticalPosition: MediaQuery.of(context).size.height* 0.1,
+      horizontalPosition: MediaQuery.of(context).size.width* 0,
       child: GFAlert(
+        titleAlignment: Alignment.center,
+        contentAlignment: Alignment.center,
         title: '修改密碼',
         content: Material(
           child: Column(
@@ -51,17 +59,27 @@ class Dialog_Modify_Password extends StatelessWidget {
             ]
           ),
         ),
-        bottomBar: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        bottomBarAlignment: Alignment.center,
+        bottomBar: GFButtonBar(
+          spacing: 20,
           children: <Widget>[
             GFButton(
-              onPressed: (){ Navigator.pop(context); },
-              shape: GFButtonShape.standard,
+              onPressed: (){ 
+                _PasswordModify();
+                Navigator.pop(context); 
+              },
+              color: const Color(0xFF00AFBE),
+              textColor: Colors.white,
+              shape: GFButtonShape.pills,
               child: const Text('確認')
             ),
             GFButton(
-              onPressed: (){ Navigator.pop(context); },
-              shape: GFButtonShape.standard,
+              onPressed: (){ 
+                Navigator.pop(context); 
+              },
+              color: const Color(0xFF00AFBE),
+              textColor: Colors.white,
+              shape: GFButtonShape.pills,
               child: const Text('關閉')
             ),
           ],
