@@ -70,7 +70,7 @@ class ProfileState extends State<ProfilePage> with TickerProviderStateMixin {
           //icon: Icon(Icons.expand_more)
         ),
         GFAccordion(
-          titleChild: GetTitleChild('學生背景', 1, 3),
+          titleChild: GetTitleChild('上課資訊', 1, 3),
           titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           contentChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
