@@ -2,6 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_client/Auth/auth.dart';
+import 'package:mobile_client/Page/Main/Profile/background_page.dart';
+import 'package:mobile_client/Page/Main/Profile/course_page.dart';
+import 'package:mobile_client/Page/Main/Profile/wish_page.dart';
 import 'package:mobile_client/Page/Main/Work/work_content_page.dart';
 import 'package:mobile_client/Page/Main/appointment_page.dart';
 import 'package:mobile_client/Page/Main/chat_page.dart';
@@ -26,6 +29,7 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
   }
 
   void UpdatePage(int value, int subvalue){
+    if(value == -1 || subvalue == -1) return;
     setState(() {
       currentIndex = value;
       currentSubIndex = subvalue;
@@ -36,9 +40,17 @@ class MainState extends State<MainPage> with TickerProviderStateMixin {
   Widget GetCurrentPage(){
     switch(currentIndex){
       case 0: return const HomePage();
-      case 1: return const ProfilePage();
+      case 1: { // profile page
+        switch(currentSubIndex){
+          case 0: return const ProfilePage();
+          case 1: return const WishPage();
+          case 2: return const BackgroundPage();
+          case 3: return const CoursePage();
+          default: return const ProfilePage();
+        }
+      }
       case 2: return const AppointmentPage();
-      case 3: {
+      case 3: { // work page
         switch(currentSubIndex){
           case 0: return const WorkPage();
           case 1: return const WorkContentPage();
