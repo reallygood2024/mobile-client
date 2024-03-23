@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/List/course_record.dart';
 
+const debug = true;
+
 class Course_List {
   List<Course_Record> elements = [];
 
@@ -17,7 +19,7 @@ class Course_List {
   }
 
   Course_List(){
-    if(kDebugMode){
+    if(debug){
       for(int i = 0; i < 10; i++){
         elements.add(Course_Record.GenerateDummy());
       }

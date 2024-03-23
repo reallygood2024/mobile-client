@@ -4,6 +4,8 @@ import 'package:getwidget/getwidget.dart';
 import 'package:mobile_client/List/homework_record.dart';
 import 'package:mobile_client/State/main_state.dart';
 
+const debug = true;
+
 class Homework_List {
   List<Homework_Record> elements = [];
 
@@ -20,7 +22,7 @@ class Homework_List {
   }
 
   Homework_List(){
-    if(kDebugMode){
+    if(debug){
       for(int i = 0; i < 10; i++){
         elements.add(Homework_Record.GenerateDummy());
       }
