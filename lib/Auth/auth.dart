@@ -2,20 +2,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mobile_client/Auth/user.dart';
 
+const debug = true;
+
 class AuthState {  
   static UserCredential? cred;
   static Function? login;
   static Function? logout;
 
   static Skip() async {
-    if (kDebugMode) print("Debug mode, skip login");
+    if (debug) print("Debug mode, skip login");
     bool hasLogin = true;
     await _SetCred(hasLogin);
   }
 
   static SetCred(UserCredential? credPara) async {
     cred = credPara;
-    if (kDebugMode) print(cred);
+    if (debug) print(cred);
     bool hasLogin = cred != null;
     await _SetCred(hasLogin);
   }
@@ -24,7 +26,7 @@ class AuthState {
     if (!hasLogin && logout != null) logout!.call();
     else if (hasLogin && login != null) login!.call();
     if (hasLogin){
-      if (kDebugMode){
+      if (debug){
         UserData.nickname = "Debug User";
         UserData.profileURL = "https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-346529.jpg&fm=jpg";
       } else {
